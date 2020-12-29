@@ -252,8 +252,7 @@ conn.reply(id, 'Bukan,gausah ngeyel' ,MessageType.text);
                 const reason = args ? args : 'Nothing.'
                 addAfkUser(sender.id,reason)
                 await conn.reply(from,`Telah AFK ➸ *Username*: ${pushname}\n➸ *Alasan*: ${reason}`, id)
-            break
-        break
+           
 // AFK
         if (isGroupMsg) {
             for (let ment of mentionedJidList) {
