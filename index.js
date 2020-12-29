@@ -245,10 +245,10 @@ conn.reply(id, 'Bukan,gausah ngeyel' ,MessageType.text);
    if (messageType === MessageType.text)
    {
       let is = m.message.conversation.toLocaleLowerCase()
-
-      case '-afk':
-                if (!isGroupMsg) return await aruga.reply(from, groupOnly(), id)
-                if (isAfkOn) return await aruga.reply(from,`Fitur AFK telah diaktifkan sebelumnya.`, id)
+}
+      if (text == '-afk'){
+                if (!isGroupMsg) return await conn.reply(from, groupOnly(), id)
+                if (isAfkOn) return await conn.reply(from,`Fitur AFK telah diaktifkan sebelumnya.`, id)
                 const reason = args ? args : 'Nothing.'
                 addAfkUser(sender.id,reason)
                 await conn.reply(from,`Telah AFK ➸ *Username*: ${pushname}\n➸ *Alasan*: ${reason}`, id)
