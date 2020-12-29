@@ -246,7 +246,29 @@ conn.reply(id, 'Bukan,gausah ngeyel' ,MessageType.text);
    {
       let is = m.message.conversation.toLocaleLowerCase()
 
-      
+      case '-afk':
+                if (!isGroupMsg) return await aruga.reply(from, groupOnly(), id)
+                if (isAfkOn) return await aruga.reply(from,`Fitur AFK telah diaktifkan sebelumnya.`, id)
+                const reason = args ? args : 'Nothing.'
+                addAfkUser(sender.id,reason)
+                await conn.reply(from,`Telah AFK ➸ *Username*: ${pushname}\n➸ *Alasan*: ${reason}`, id)
+            break
+        break
+// AFK
+        if (isGroupMsg) {
+            for (let ment of mentionedJidList) {
+                if (checkAfkUser(ment)) {
+                    const getId = getAfkId(ment)
+                    const getReason = getAfkReason(getId)
+                    await conn.reply(from,`*「 AFK MODE 」*\n\nSssttt! Orangnya lagi AFK, jangan diganggu!`, id)
+                }
+            }
+            if (checkAfkUser(sender.id) && !isCmd) {
+                _afk.splice(getAfkPosition(sender.id), 1)
+                fs.writeFileSync('./settings/afk.json', JSON.stringify(_afk))
+                await conn.sendText(from,`*${pushname}* telah kembali dari AFK! Selamat datang kembali~`,id)
+            }
+        }
     }
 
 /*if (text.includes("#scdl")){
